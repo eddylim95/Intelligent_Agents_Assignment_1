@@ -1,62 +1,76 @@
 public class Maze {
-    public int numCols = 6;
-    public int numRows = 6;
-    public Tile[][] tiles;
+    public int numCols;
+    public int numRows;
+    public TileState[][] tileStates;
 
     public Maze(int numCols, int numRows) {
         this.numCols = numCols;
         this.numRows = numRows;
 
-        // Initialize tiles 3D array
-        tiles = new Tile[numCols][numRows];
-        for (var i=0; i < numCols; i++){
-            for (var j=0; j < numRows; j++){
-                tiles[i][j] = new Tile();
+        // Initialize tileStates 3D array
+        tileStates = new TileState[numCols][numRows];
+        for (int i=0; i < numCols; i++){
+            for (int j=0; j < numRows; j++){
+                tileStates[i][j] = new TileState(i, j);
             }
         }
+
+        // Place walls in maze
+        tileStates[1][0].wall = true;
+        tileStates[4][1].wall = true;
+        tileStates[1][4].wall = true;
+        tileStates[2][4].wall = true;
+        tileStates[3][4].wall = true;
+
+        // Place green tile rewards in maze
+        tileStates[0][0].reward = CONSTANTS.GREEN_TILE_REWARD;
+        tileStates[2][0].reward = CONSTANTS.GREEN_TILE_REWARD;
+        tileStates[5][0].reward = CONSTANTS.GREEN_TILE_REWARD;
+        tileStates[3][1].reward = CONSTANTS.GREEN_TILE_REWARD;
+        tileStates[4][2].reward = CONSTANTS.GREEN_TILE_REWARD;
+        tileStates[5][3].reward = CONSTANTS.GREEN_TILE_REWARD;
+
+        // Place brown tile rewards in maze
+        tileStates[1][1].reward = CONSTANTS.BROWN_TILE_REWARD;
+        tileStates[5][1].reward = CONSTANTS.BROWN_TILE_REWARD;
+        tileStates[2][2].reward = CONSTANTS.BROWN_TILE_REWARD;
+        tileStates[3][3].reward = CONSTANTS.BROWN_TILE_REWARD;
+        tileStates[4][4].reward = CONSTANTS.BROWN_TILE_REWARD;
     }
 
-    public double upActionUtility(int col, int row){
-        /*
-        Utility of the up action
-         */
-        // Check action if can be done, i.e. tiles exists and not a wall
-        if (row !=0 && !tiles[col][row - 1].wall){
-            return tiles[col][row - 1].utility;
-        }
-        return tiles[col][row].utility;
+    /**
+     * Check if movement upward from position is possible.
+     * @param position Position of agent
+     * @return true if movement is possible
+     */
+    public boolean canMoveUp(Position position){
+        return position.row != 0 && !tileStates[position.col][position.row - 1].wall;
     }
 
-    public double downActionUtility(int col, int row){
-        /*
-        Utility of the down action
-         */
-        // Check action if can be done, i.e. tiles exists and not a wall
-        if (row < numRows - 1 && !tiles[col][row + 1].wall) {
-            return tiles[col][row + 1].utility;
-        }
-        return tiles[col][row].utility;
+    /**
+     * Check if movement downward from position is possible.
+     * @param position Position of agent
+     * @return true if movement is possible
+     */
+    public boolean canMoveDown(Position position){
+        return position.row != numRows - 1 && !tileStates[position.col][position.row + 1].wall;
     }
 
-    public double leftActionUtility(int col, int row){
-        /*
-        Utility of the left action
-         */
-        // Check action if can be done, i.e. tiles exists and not a wall
-        if (col !=0 && !tiles[col - 1][row].wall){
-            return tiles[col - 1][row].utility;
-        }
-        return tiles[col][row].utility;
+    /**
+     * Check if movement leftward from position is possible.
+     * @param position Position of agent
+     * @return true if movement is possible
+     */
+    public boolean canMoveLeft(Position position){
+        return position.col !=0 && !tileStates[position.col - 1][position.row].wall;
     }
 
-    public double rightActionUtility(int col, int row){
-        /*
-        Utility of the right action
-         */
-        // Check action if can be done, i.e. tiles exists and not a wall
-        if (col < numCols - 1 && !tiles[col + 1][row].wall){
-            return tiles[col + 1][row].utility;
-        }
-        return tiles[col][row].utility;
+    /**
+     * Check if movement rightward from position is possible.
+     * @param position Position of agent
+     * @return true if movement is possible
+     */
+    public boolean canMoveRight(Position position){
+        return position.col != numCols - 1 && !tileStates[position.col + 1][position.row].wall;
     }
 }
