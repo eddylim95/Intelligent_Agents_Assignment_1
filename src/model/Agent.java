@@ -1,5 +1,10 @@
+package model;
+
 import java.util.ArrayList;
 
+/**
+ * Not used. Strange.
+ */
 public class Agent {
     private Maze maze;
     private Position position;
@@ -11,7 +16,7 @@ public class Agent {
     }
 
     /**
-     * Action to move agent up
+     * model.Action to move agent up
      */
     public void moveUp() {
         if (maze.canMoveUp(position)){
@@ -21,7 +26,7 @@ public class Agent {
     }
 
     /**
-     * Action to move agent down
+     * model.Action to move agent down
      */
     public void moveDown() {
         if (maze.canMoveDown(position)){
@@ -31,7 +36,7 @@ public class Agent {
     }
 
     /**
-     * Action to move agent left
+     * model.Action to move agent left
      */
     public void moveLeft() {
         if (maze.canMoveLeft(position)){
@@ -41,7 +46,7 @@ public class Agent {
     }
 
     /**
-     * Action to move agent right
+     * model.Action to move agent right
      */
     public void moveRight() {
         if (maze.canMoveRight(position)){

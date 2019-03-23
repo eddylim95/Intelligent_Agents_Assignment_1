@@ -1,3 +1,5 @@
+package model;
+
 public class CONSTANTS {
     public static int MAZE_NUM_COLS = 6;
     public static int MAZE_NUM_ROWS = 6;
@@ -10,9 +12,12 @@ public class CONSTANTS {
     private static double C = 0.1;
     private static double R_MAX = 1.0;
     public static double MAX_UTILITY_ERROR = C * R_MAX;
-    public static double DISCOUNT_FACTOR = .99;
+    public static double DISCOUNT_FACTOR = 0.99;
+    public static double K_VALUE = 10;
 
     public static double WHITE_TILE_REWARD = -0.04;
     public static double GREEN_TILE_REWARD = 1;
     public static double BROWN_TILE_REWARD = -1;
+
+    public static double COMPARISION_EPSILON = 0.0000000000001;
 }

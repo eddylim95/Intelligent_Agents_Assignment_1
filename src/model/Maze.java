@@ -1,3 +1,5 @@
+package model;
+
 public class Maze {
     public int numCols;
     public int numRows;
@@ -16,11 +18,11 @@ public class Maze {
         }
 
         // Place walls in maze
-        tileStates[1][0].wall = true;
-        tileStates[4][1].wall = true;
-        tileStates[1][4].wall = true;
-        tileStates[2][4].wall = true;
-        tileStates[3][4].wall = true;
+        tileStates[1][0].setWall(true);
+        tileStates[4][1].setWall(true);
+        tileStates[1][4].setWall(true);
+        tileStates[2][4].setWall(true);
+        tileStates[3][4].setWall(true);
 
         // Place green tile rewards in maze
         tileStates[0][0].reward = CONSTANTS.GREEN_TILE_REWARD;
@@ -38,9 +40,27 @@ public class Maze {
         tileStates[4][4].reward = CONSTANTS.BROWN_TILE_REWARD;
     }
 
+    public void printMazeState(){
+        System.out.println("Utilities: ");
+        for (int i = 0; i < CONSTANTS.MAZE_NUM_COLS; i++){
+            for (int j = 0; j < CONSTANTS.MAZE_NUM_ROWS; j++){
+                System.out.print(String.format("%22s", tileStates[j][i].utility + "|"));
+            }
+            System.out.println();
+        }
+
+        System.out.println("Policies: ");
+        for (int i = 0; i < CONSTANTS.MAZE_NUM_COLS; i++){
+            for (int j = 0; j < CONSTANTS.MAZE_NUM_ROWS; j++){
+                System.out.print(String.format("%22s", tileStates[j][i].bestAction + "|"));
+            }
+            System.out.println();
+        }
+    }
+
     /**
      * Check if movement upward from position is possible.
-     * @param position Position of agent
+     * @param position model.Position of agent
      * @return true if movement is possible
      */
     public boolean canMoveUp(Position position){
@@ -49,7 +69,7 @@ public class Maze {
 
     /**
      * Check if movement downward from position is possible.
-     * @param position Position of agent
+     * @param position model.Position of agent
      * @return true if movement is possible
      */
     public boolean canMoveDown(Position position){
@@ -58,7 +78,7 @@ public class Maze {
 
     /**
      * Check if movement leftward from position is possible.
-     * @param position Position of agent
+     * @param position model.Position of agent
      * @return true if movement is possible
      */
     public boolean canMoveLeft(Position position){
@@ -67,7 +87,7 @@ public class Maze {
 
     /**
      * Check if movement rightward from position is possible.
-     * @param position Position of agent
+     * @param position model.Position of agent
      * @return true if movement is possible
      */
     public boolean canMoveRight(Position position){
