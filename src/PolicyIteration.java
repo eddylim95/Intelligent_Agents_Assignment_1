@@ -11,11 +11,17 @@ public class PolicyIteration {
         this.maze = maze;
     }
 
+    /**
+     * Performs the policy iteration algorithm
+     */
     public void updatePolicies(){
         // Note that there is no initial random initialization of best actions per state as they are created with a
         // default action already
         boolean changed;
         int iterations = 0;
+
+        // Add to logger
+        Logger.logStates(maze.tileStates);
 
         do {
             policyEvaluation();
@@ -43,6 +49,7 @@ public class PolicyIteration {
     private void policyEvaluation(){
         // K_VALUE is predefined as a constant to how many times policy evaluation will carry out
         for (int k = 0; k < CONSTANTS.K_VALUE; k++) {
+            // Simplified bellman's update
             for (int i = 0; i < maze.numCols; i++) {
                 for (int j = 0; j < maze.numRows; j++) {
                     if (!maze.tileStates[i][j].wall) {

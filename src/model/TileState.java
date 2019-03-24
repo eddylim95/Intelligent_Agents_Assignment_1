@@ -1,10 +1,5 @@
 package model;
 
-import model.Action;
-import model.Position;
-
-import java.util.ArrayList;
-
 public class TileState {
 
     // Set default reward to a white tile reward

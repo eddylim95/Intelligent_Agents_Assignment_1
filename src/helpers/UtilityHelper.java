@@ -2,8 +2,6 @@ package helpers;
 
 import model.*;
 
-import java.util.ArrayList;
-
 public class UtilityHelper {
     /**
      * Obtain the max expected utility of the different actions of up, down, left, right

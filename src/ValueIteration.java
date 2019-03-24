@@ -18,6 +18,9 @@ public class ValueIteration {
         double maxUtilityChange;
         int iterations = 0;
 
+        // Add to logger
+        Logger.logStates(maze.tileStates);
+
         do {
             maxUtilityChange = 0;
             for (int i = 0; i < maze.numCols; i++) {
@@ -57,6 +60,4 @@ public class ValueIteration {
                 UtilityHelper.maxActionExpectedUtility(maze, tileState.position);
         return tileState.utility;
     }
-
-
 }

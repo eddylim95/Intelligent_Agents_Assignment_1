@@ -42,16 +42,16 @@ public class Maze {
 
     public void printMazeState(){
         System.out.println("Utilities: ");
-        for (int i = 0; i < CONSTANTS.MAZE_NUM_COLS; i++){
-            for (int j = 0; j < CONSTANTS.MAZE_NUM_ROWS; j++){
+        for (int i = 0; i < numCols; i++){
+            for (int j = 0; j < numRows; j++){
                 System.out.print(String.format("%22s", tileStates[j][i].utility + "|"));
             }
             System.out.println();
         }
 
         System.out.println("Policies: ");
-        for (int i = 0; i < CONSTANTS.MAZE_NUM_COLS; i++){
-            for (int j = 0; j < CONSTANTS.MAZE_NUM_ROWS; j++){
+        for (int i = 0; i < numCols; i++){
+            for (int j = 0; j < numRows; j++){
                 System.out.print(String.format("%22s", tileStates[j][i].bestAction + "|"));
             }
             System.out.println();
